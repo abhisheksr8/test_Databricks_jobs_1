@@ -1,0 +1,80 @@
+{
+  "fabric_id" : "6526",
+  "components" : [ {
+    "DBTComponent" : {
+      "profilePath" : "dbfs:/FileStore/prophecy/artifacts/prophecy/test/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/Databricks-SQL-Automation/Model_0--1403357062/profiles.yml",
+      "path" : "dbfs:/FileStore/prophecy/artifacts/prophecy/test/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/Databricks-SQL-Automation/Model_0--1403357062/dbt_script.py",
+      "nodeName" : "Model_0",
+      "projectId" : "54985",
+      "id" : "SdWZMihZshi-9vCTJFP1G$$EuCC2LkspziDyd8L5DCsU",
+      "language" : "sql",
+      "componentFilesDirectory" : "dbfs:/FileStore/prophecy/artifacts/prophecy/test/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/Databricks-SQL-Automation/Model_0--1403357062",
+      "sqlFabricId" : "6526",
+      "releaseVersion" : "latest",
+      "content" : "import subprocess\nimport sys\nimport os\nimport tempfile\nimport shlex\nimport re\n\ndef get_git_repository_code_directory(git_repository_root_directory, sub_directory):\n    if not sub_directory or sub_directory == \"/\":\n        return git_repository_root_directory\n    elif sub_directory.startswith(\"/\"):\n        return git_repository_root_directory + sub_directory\n    else:\n        return git_repository_root_directory + '/' + sub_directory\n\n\ndef build_git_clone_command(repository, overridden_entity_value, git_repository_root_directory, overridden_entity=None):\n    if overridden_entity == \"Branch\":\n        return f\"git clone {repository} --branch {overridden_entity_value} --single-branch {git_repository_root_directory}\"\n    elif overridden_entity == \"Tag\":\n        return f\"git clone --depth 1 {repository} --branch {overridden_entity_value} {git_repository_root_directory}\"\n    elif overridden_entity == \"Commit\":\n        return f\"git clone {repository} {git_repository_root_directory}; git checkout {overridden_entity_value}\"\n\ndef run_dbt(git_clone_command, dbt_working_dir, profile_path_in_project_directory, dbt_commands, secret_scope, secret_key, profile_path_in_dbfs, update_git_script, envs):\n\n    for key, value in envs.items():\n        os.environ[key] = value\n\n    def run_cmd(cmd, cwd, env, shell = False, split=True):\n        try:\n            cmds = shlex.split(cmd) if split else cmd\n            result = subprocess.run(cmds, capture_output=True, cwd=cwd, env=env, check=True, text=True, shell=shell)\n            print(result.stdout)\n            return result.stdout\n        except subprocess.CalledProcessError as error:\n            print(error.output)\n            print(f\"The command failed with exit status {error.returncode}\")\n            error_stderr = error.stderr\n            if len(error_stderr) != 0 and not error_stderr.isspace():\n                print(f\"Error message: {error_stderr}\")\n            sys.exit(1)\n\n\n    def update_git():\n        with tempfile.NamedTemporaryFile(mode='w', delete=False) as f:\n            f.write(update_git_script)\n            os.chmod(f.name, 0o700)\n\n        cmd = f'bash {f.name}'\n        run_cmd(cmd, \".\", os.environ)\n\n        os.unlink(f.name)\n\n\n    def get_secret():\n        try:\n            return dbutils.secrets.get(secret_scope, secret_key)\n        except Exception as e:\n            print(\"Couldn't get secret\")\n            return \"\"\n\n\n    secret = get_secret()\n    db_token = \"\"\n    git_token = \"\"\n    semi_colon_hit = False\n\n\n    for ch in secret:\n        if (ch == ';'):\n            semi_colon_hit = True\n        elif (semi_colon_hit):\n            git_token = git_token + ch\n        else:\n            db_token = db_token + ch\n\n    secret = \"\"\n\n    def move_profiles_to_current_dir():\n        dbutils.fs.cp(profile_path_in_dbfs, f\"file:{profile_path_in_project_directory}\")\n\n    def add_token_to_profile():\n        with open(profile_path_in_project_directory, \"r+\") as f:\n            data = f.read()\n            data = data.replace(f'{{{{ TOKEN }}}}', db_token)\n            f.seek(0)\n            f.write(data)\n            f.truncate()\n\n\n    def remove_profile():\n        try:\n            os.remove(profile_path_in_project_directory)\n            print(f'Successfully deleted generated profile')\n        except OSError as e:\n            print(f'Could not delete generated profile {e}')\n\n\n    def prophecy_exec():\n        # Update git to latest version, 2.25.1 in Databricks doesn't support sparse clone\n        update_git()\n\n        # Create a temporary script to output the token\n        with tempfile.NamedTemporaryFile(mode='w', delete=False) as f:\n            f.write(f'#!/bin/sh\\necho {git_token}\\n')\n            os.chmod(f.name, 0o700)\n\n        # Set the GIT_ASKPASS environment variable to the path of the script\n        env = os.environ.copy()\n        env['GIT_ASKPASS'] = f.name\n\n        # Clone the repository\n        print(git_clone_command)\n        run_cmd(git_clone_command, cwd=\".\", env=env)\n        print(\"Repository clone complete\")\n\n        move_profiles_to_current_dir()\n        add_token_to_profile()\n\n        print(\"Running dbt commands\")\n\n        for cmd in dbt_commands:\n            run_cmd(cmd, cwd=dbt_working_dir, env=env)\n\n        # Clean up the temporary script\n        os.unlink(f.name)\n\n    prophecy_exec()\n    git_token = \"\"\n    db_token = \"\"\n\ngit_repository_root_directory = tempfile.mkdtemp()\nsub_directory = \"/test/databricks_project\"\noverridden_entity = \"Tag\"\noverridden_entity_value = \"__PROJECT_FULL_RELEASE_TAG_PLACEHOLDER__\"\nrepository = \"https://github.com/abhisheksr8/test_Databricks_jobs_1.git\"\ngit_clone_command = build_git_clone_command(repository, overridden_entity_value, git_repository_root_directory, overridden_entity)\ndbt_working_dir = get_git_repository_code_directory(git_repository_root_directory, sub_directory)\nprofile_path_in_project_directory = dbt_working_dir + '/profiles.yml'\ndbt_commands = ['''dbt  seed --profile run_profile''','''dbt  test --profile run_profile''']\ngit_update_cmds = ['add-apt-repository -y ppa:git-core/ppa', 'apt update', 'apt install -y git']\nsecret_scope = \"prophecy_jobs_1793\"\nsecret_key = \"Databricks-SQL-Automation-54985-Model_0--1403357062\"\nprofile_path_in_dbfs = \"dbfs:/FileStore/prophecy/artifacts/prophecy/test/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/Databricks-SQL-Automation/Model_0--1403357062/profiles.yml\"\nupdate_git_script = '''#!/bin/bash\n\ntarget_version=\"2.33.1\"\n\n# Get the Git version\ngit_version=$(git --version | awk '{print $3}')\n\n# Compare versions using 'sort' command\nif [[ \"$(echo -e \"$git_version\\\\n$target_version\" | sort -V | head -n1)\" == \"$target_version\" ]]; then\n  echo \"Git version is $git_version\"\nelse\n  echo \"Git version is $git_version, needs an upgrade\"\n  add-apt-repository -y ppa:git-core/ppa\n  apt update\n  apt install -y git\n  echo \"Git version upgraded to $(git --version | awk '{print $3}')\"\nfi\n'''\nenvs = {}\nrun_dbt(git_clone_command, dbt_working_dir, profile_path_in_project_directory, dbt_commands, secret_scope, secret_key, profile_path_in_dbfs, update_git_script, envs)\n",
+      "profileContent" : "run_profile:\n  target: profile_target\n  outputs:\n    profile_target:\n      type: databricks\n      schema: qa_database\n      host: dbc-ac0e9adb-13fb.cloud.databricks.com\n      http_path: /sql/1.0/warehouses/2dc4d06bcada6a51\n      token: {{ TOKEN }}\n",
+      "secretKey" : "Databricks-SQL-Automation-54985-Model_0--1403357062",
+      "currentProjectDBFSPath" : "dbfs:/FileStore/prophecy/artifacts/prophecy/test/54985/Databricks-SQL-Automation/Model_0/testBranchDatabricksJobs"
+    }
+  } ],
+  "request" : {
+    "format" : "MULTI_TASK",
+    "name" : "Databricks-SQL-Automation",
+    "job_clusters" : [ {
+      "job_cluster_key" : "Databricks-SQL-Automation_default_prophecy_internal_jobs",
+      "new_cluster" : {
+        "spark_version" : "11.3.x-scala2.12",
+        "node_type_id" : "i3.xlarge",
+        "driver_node_type_id" : "i3.xlarge",
+        "num_workers" : 0,
+        "spark_conf" : {
+          "spark.prophecy.metadata.fabric.id" : "6526",
+          "spark.prophecy.metadata.job.uri" : "__PROJECT_ID_PLACEHOLDER__/jobs/Databricks-SQL-Automation",
+          "spark.prophecy.metadata.is.interactive.run" : "false",
+          "spark.prophecy.project.id" : "__PROJECT_ID_PLACEHOLDER__",
+          "spark.prophecy.metadata.user.id" : "882",
+          "spark.prophecy.tasks" : "H4sIAAAAAAAAAKuuBQBDv6ajAgAAAA==",
+          "spark.prophecy.metadata.job.branch" : "__PROJECT_RELEASE_VERSION_PLACEHOLDER__",
+          "spark.prophecy.metadata.url" : "__PROPHECY_URL_PLACEHOLDER__",
+          "spark.prophecy.execution.metrics.disabled" : "false",
+          "spark.prophecy.execution.service.url" : "wss://test.prophecy.io/execution/eventws",
+          "spark.databricks.isv.product" : "prophecy"
+        }
+      }
+    } ],
+    "email_notifications" : {
+      "on_start" : [ "abhisheks+e2etests@prophecy.io" ],
+      "on_failure" : [ "abhisheks+e2etests@prophecy.io" ]
+    },
+    "tasks" : [ {
+      "task_key" : "Model_0",
+      "job_cluster_key" : "Databricks-SQL-Automation_default_prophecy_internal_jobs",
+      "spark_python_task" : {
+        "python_file" : "dbfs:/FileStore/prophecy/artifacts/prophecy/test/__PROJECT_ID_PLACEHOLDER__/__PROJECT_RELEASE_VERSION_PLACEHOLDER__/Databricks-SQL-Automation/Model_0--1403357062/dbt_script.py"
+      },
+      "libraries" : [ {
+        "pypi" : {
+          "package" : "dbt-databricks>=1.5.0,<2.0.0"
+        }
+      } ],
+      "email_notifications" : { },
+      "max_retries" : 1
+    } ],
+    "max_concurrent_runs" : 1,
+    "schedule" : {
+      "quartz_cron_expression" : "0 0 0 * * ? 2090",
+      "timezone_id" : "UTC",
+      "pause_status" : "PAUSED"
+    },
+    "git_source" : {
+      "git_url" : "https://github.com/abhisheksr8/test_Databricks_jobs_1.git",
+      "git_provider" : "gitHub",
+      "git_branch" : "testBranchDatabricksJobs"
+    }
+  },
+  "cluster_mode" : {
+    "clusterMode" : "Single"
+  },
+  "secret_scope" : "prophecy_jobs_1793",
+  "sorted_processes" : [ "SdWZMihZshi-9vCTJFP1G$$EuCC2LkspziDyd8L5DCsU" ]
+}

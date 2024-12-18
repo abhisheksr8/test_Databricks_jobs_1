@@ -1,0 +1,95 @@
+{
+  "id" : "test_modelAnother_final_Automation_Databricks_jobs_model",
+  "metainfo" : {
+    "label" : "test_modelAnother_final_Automation_Databricks_jobs_model",
+    "autoLayout" : false,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "entityConfig" : {
+        "alias" : "\"test_Automation_Databricks_jobs_model_1734566099653\"",
+        "strategy" : "\"timestamp\"",
+        "invalidate_hard_deletes" : true,
+        "updated_at" : "\"updated_at\"",
+        "target_schema" : "\"qa_upload_schema\"",
+        "unique_key" : "\"id\"",
+        "type" : "SnapshotConfig"
+      }
+    },
+    "version" : 0
+  },
+  "processes" : {
+    "test_modelAnother_final_Automation_Databricks_jobs_model##gj2HBvLH" : {
+      "id" : "test_modelAnother_final_Automation_Databricks_jobs_model##gj2HBvLH",
+      "component" : "TargetSnapshot",
+      "metadata" : {
+        "label" : "test_modelAnother_final_Automation_Databricks_jobs_model",
+        "x" : 20,
+        "y" : 20,
+        "phase" : 0,
+        "macroDependencies" : [ ],
+        "comment" : "Retrieves all records from the automation jobs model for testing purposes.",
+        "autoUpdateComment" : true
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "SELECT * \n\nFROM test_Automation_Databricks_jobs_model\n",
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "CCPdAhwx",
+          "slug" : "test_Automation_Databricks_jobs_model"
+        } ],
+        "outputs" : [ {
+          "id" : "FekBCol3",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "jKAY5RpPNsG4-lvWAErEx" : {
+      "id" : "jKAY5RpPNsG4-lvWAErEx",
+      "component" : "Model",
+      "metadata" : {
+        "label" : "test_Automation_Databricks_jobs_model",
+        "slug" : "test_Automation_Databricks_jobs_model",
+        "x" : -520,
+        "y" : -160,
+        "phase" : 0
+      },
+      "properties" : {
+        "table" : {
+          "name" : "test_Automation_Databricks_jobs_model",
+          "sourceType" : "Model",
+          "alias" : ""
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "b4BlkTCJUHunYMNB3yxH9",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "W82aplaRfs-kOWLbkC2_Q",
+    "source" : "jKAY5RpPNsG4-lvWAErEx",
+    "sourcePort" : "b4BlkTCJUHunYMNB3yxH9",
+    "target" : "test_modelAnother_final_Automation_Databricks_jobs_model##gj2HBvLH",
+    "targetPort" : "CCPdAhwx"
+  } ],
+  "component" : "Snapshot"
+}
