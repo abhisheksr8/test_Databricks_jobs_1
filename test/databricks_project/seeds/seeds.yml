@@ -1,0 +1,5 @@
+---
+version: 2
+seeds:
+- name: "qa_test_seed_job_Databricks"
+  columns: []
