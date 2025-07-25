@@ -1,0 +1,96 @@
+{
+  "id" : "test_modelAnother_final_Automation_Databricks_jobs_model",
+  "metainfo" : {
+    "label" : "test_modelAnother_final_Automation_Databricks_jobs_model",
+    "autoLayout" : false,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "entityConfig" : {
+        "alias" : "\"test_Automation_Databricks_jobs_model_1753440884569\"",
+        "strategy" : "\"timestamp\"",
+        "invalidate_hard_deletes" : true,
+        "updated_at" : "\"updated_at\"",
+        "target_schema" : "\"qa_upload_schema\"",
+        "unique_key" : "\"id\"",
+        "type" : "SnapshotConfig"
+      },
+      "mergeApproach" : "scd2"
+    },
+    "version" : 0
+  },
+  "processes" : {
+    "test_modelAnother_final_Automation_Databricks_jobs_model##NKlM7n6x" : {
+      "id" : "test_modelAnother_final_Automation_Databricks_jobs_model##NKlM7n6x",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "test_modelAnother_final_Automation_Databricks_jobs_model",
+        "x" : 20,
+        "y" : 20,
+        "phase" : 0,
+        "macroDependencies" : [ ]
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "SELECT * \n\nFROM test_Automation_Databricks_jobs_model\n",
+        "isModel" : false,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "yhVLIFvW",
+          "slug" : "test_Automation_Databricks_jobs_model"
+        } ],
+        "outputs" : [ {
+          "id" : "zMblPDJc",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "fHHD9VplR2k8qP2r1jt7Q" : {
+      "id" : "fHHD9VplR2k8qP2r1jt7Q",
+      "component" : "Model",
+      "metadata" : {
+        "label" : "test_Automation_Databricks_jobs_model",
+        "slug" : "test_Automation_Databricks_jobs_model",
+        "x" : -500,
+        "y" : -180,
+        "phase" : 0
+      },
+      "properties" : {
+        "table" : {
+          "name" : "test_Automation_Databricks_jobs_model",
+          "sourceType" : "Model",
+          "sourceName" : "",
+          "alias" : ""
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "-XJHM10-enbGi-X1C1FSl",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "_4eGdR2rxQlV_cWJNjbUJ",
+    "source" : "fHHD9VplR2k8qP2r1jt7Q",
+    "sourcePort" : "-XJHM10-enbGi-X1C1FSl",
+    "target" : "test_modelAnother_final_Automation_Databricks_jobs_model##NKlM7n6x",
+    "targetPort" : "yhVLIFvW"
+  } ],
+  "component" : "Snapshot"
+}

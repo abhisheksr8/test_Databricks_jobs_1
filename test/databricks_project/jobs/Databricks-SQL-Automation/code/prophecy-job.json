@@ -1,0 +1,102 @@
+{
+  "metainfo" : {
+    "type" : "Databricks",
+    "fabricId" : "9",
+    "jobId" : "jobs/Databricks-SQL-Automation",
+    "name" : "Databricks-SQL-Automation",
+    "schedule" : "0 0 0 * * ? 2090",
+    "scheduleTimeZone" : "UTC",
+    "jobClusterMode" : {
+      "clusterMode" : "Single"
+    },
+    "enabled" : false,
+    "defaultClusterSize" : "prophecy_internal_jobs",
+    "alerting" : {
+      "emails" : "abhisheks+e2etests@prophecy.io",
+      "onStart" : true,
+      "onSuccess" : false,
+      "onFailure" : true
+    },
+    "maxConcurrentRuns" : 1,
+    "processDefaultSettings" : {
+      "retries" : 0,
+      "alerting" : {
+        "emails" : "",
+        "onStart" : false,
+        "onSuccess" : false,
+        "onFailure" : false
+      },
+      "emails" : "",
+      "onStart" : false,
+      "onSuccess" : false,
+      "onFailure" : false
+    }
+  },
+  "processes" : {
+    "gG4A8D_zwa6JeB7l3DEwN$$gzEFLTAmcHtq_V6iPf7cb" : {
+      "id" : "gG4A8D_zwa6JeB7l3DEwN$$gzEFLTAmcHtq_V6iPf7cb",
+      "component" : "Model",
+      "metadata" : {
+        "label" : "Model_0",
+        "slug" : "Model_0",
+        "x" : -560,
+        "y" : -220
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "psLFezML3jbfNvSuzq2b9$$hE9vHetk5LUvZPqSG5akO",
+          "slug" : ""
+        } ],
+        "outputs" : [ {
+          "id" : "LiZdvXNrbc-9J5JNLylcf$$S72cCWirstxoOOlwf_zZV",
+          "slug" : ""
+        } ]
+      },
+      "settings" : {
+        "retries" : 1,
+        "alerting" : {
+          "emails" : "",
+          "onStart" : false,
+          "onSuccess" : false,
+          "onFailure" : false
+        },
+        "emails" : "",
+        "onStart" : false,
+        "onSuccess" : false,
+        "onFailure" : false
+      },
+      "properties" : {
+        "entityId" : null,
+        "execSeed" : true,
+        "execRun" : false,
+        "gitEntity" : "branch",
+        "customVersion" : true,
+        "projectId" : "23571",
+        "runOnlyModel" : "false",
+        "loadingModels" : false,
+        "entityName" : null,
+        "gitEntityValueTag" : null,
+        "profile" : "run_profile",
+        "sqlFabricId" : "9",
+        "gitEntityValue" : "testBranchDatabricksJobs",
+        "execDeps" : false,
+        "gitEntityValueCommit" : null,
+        "sqlProjectType" : "databricks",
+        "gitEntityValueBranch" : "testBranchDatabricksJobs",
+        "execTest" : true,
+        "currentProjectModels" : [ {
+          "label" : "test_Automation_Databricks_jobs_model",
+          "value" : "test_Automation_Databricks_jobs_model",
+          "id" : "23571/.prophecy/metadata/sqlmodels/test_Automation_Databricks_jobs_model",
+          "name" : "test_Automation_Databricks_jobs_model"
+        }, {
+          "label" : "test_modelAnother_final_Automation_Databricks_jobs_model",
+          "value" : "test_modelAnother_final_Automation_Databricks_jobs_model",
+          "id" : "23571/.prophecy/metadata/sqlsnapshots/test_modelAnother_final_Automation_Databricks_jobs_model",
+          "name" : "test_modelAnother_final_Automation_Databricks_jobs_model"
+        } ]
+      }
+    }
+  },
+  "connections" : [ ]
+}
