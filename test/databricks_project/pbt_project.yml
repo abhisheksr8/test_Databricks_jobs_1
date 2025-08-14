@@ -1,0 +1,199 @@
+name: Databricks_AutomationJobs_Project
+description: test random description
+version: 0.0.1
+author: abhisheks+e2etests@prophecy.io
+language: sql
+buildSystem: ''
+buildSystemDetails: null
+pipelines: {}
+datasets: {}
+templates: {}
+jobs:
+  jobs/Databricks-SQL-Automation:
+    name: Databricks-SQL-Automation
+    description: SQL Databricks test job
+    fabricUID: 6526
+    scheduler:
+      Databricks: {}
+    cloudProvider: null
+    jobSize: null
+    scheduleCron: 0 0 0 * * ? 2090
+    timeout: null
+    alerting:
+      emails: abhisheks+e2etests@prophecy.io
+      onStart: true
+      onSuccess: false
+      onFailure: true
+    pipelines: []
+    jobClusterMode:
+      clusterMode:
+        Single: {}
+      clusterId: null
+    enabled: null
+    createdAt: '2025-08-14 10:12:50'
+    author: abhisheks+e2etests@prophecy.io
+    models: []
+    sqlProjects:
+    - '65244'
+  jobs/Databricks-SQL-Automation_1:
+    name: Databricks-SQL-Automation_1
+    description: this is airflow job buddy
+    fabricUID: 6526
+    scheduler:
+      Databricks: {}
+    cloudProvider: null
+    jobSize: null
+    scheduleCron: 0 0 0 * * ? 2090
+    timeout: null
+    alerting:
+      emails: abhisheks@prophecy.io,rohitj@prophecy.io,yuvraj@prophecy.io
+      onStart: true
+      onSuccess: true
+      onFailure: true
+    pipelines: []
+    jobClusterMode:
+      clusterMode:
+        Single: {}
+      clusterId: null
+    enabled: null
+    createdAt: '2025-08-14 10:14:08'
+    author: abhisheks+e2etests@prophecy.io
+    models:
+    - test_Automation_Databricks_jobs_model
+    sqlProjects: []
+gemContainer:
+  languageVersion: ''
+  gemLibsVersion: ''
+  gems: {}
+  dependencies: null
+functions:
+  author: null
+  createdAt: '2025-08-14 10:06:46'
+  udfs: {}
+  udafs: {}
+  expressions: {}
+  airflowFunctions: {}
+  businessRules: {}
+subgraphs: {}
+sqlModels:
+  .prophecy/metadata/sqlmodels/test_Automation_Databricks_jobs_model:
+    name: test_Automation_Databricks_jobs_model
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: id
+        dataType:
+          type: Integer
+      - name: name
+        dataType:
+          type: String
+      - name: updated_at
+        dataType:
+          type: Date
+    description: null
+    author: abhisheks+e2etests@prophecy.io
+    files:
+    - models/testmodel/test_Automation_Databricks_jobs_model.sql
+    - .prophecy/ide/models/test_Automation_Databricks_jobs_model.json
+    sqlDependencies:
+      models: []
+      datasets: []
+      seeds: []
+      sources: []
+      snapshots: []
+    createdAt: '2025-08-14 10:07:51'
+sqlSnapshots:
+  .prophecy/metadata/sqlsnapshots/test_modelAnother_final_Automation_Databricks_jobs_model:
+    name: test_modelAnother_final_Automation_Databricks_jobs_model
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: id
+        dataType:
+          type: Integer
+      - name: name
+        dataType:
+          type: String
+      - name: updated_at
+        dataType:
+          type: Date
+      - name: dbt_scd_id
+        dataType:
+          type: String
+      - name: dbt_updated_at
+        dataType:
+          type: Date
+      - name: dbt_valid_from
+        dataType:
+          type: Date
+      - name: dbt_valid_to
+        dataType:
+          type: Date
+    description: null
+    author: abhisheks+e2etests@prophecy.io
+    files:
+    - snapshots/anotherfolder/test_modelAnother_final_Automation_Databricks_jobs_model.sql
+    - .prophecy/ide/snapshots/test_modelAnother_final_Automation_Databricks_jobs_model.json
+    - snapshots/anotherfolder/schema.yml
+    sqlDependencies:
+      models: []
+      datasets: []
+      seeds: []
+      sources: []
+      snapshots: []
+    createdAt: '2025-08-14 10:11:56'
+sqlTests: {}
+sqlMacros:
+  .prophecy/metadata/sqlmacros/generate_schema_name:
+    name: generate_schema_name
+    macroType: expression
+    description: null
+    author: abhisheks+e2etests@prophecy.io
+    files:
+    - macros/generate_schema_name.sql
+    - .prophecy/ide/macros/generate_schema_name.json
+    createdAt: '2025-08-14 10:06:53'
+sqlSeeds:
+  .prophecy/metadata/sqlseeds/qa_test_seed_job_Databricks:
+    name: qa_test_seed_job_Databricks
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: id
+        dataType:
+          type: Integer
+      - name: name
+        dataType:
+          type: String
+      - name: updated_at
+        dataType:
+          type: Date
+    description: null
+    author: abhisheks+e2etests@prophecy.io
+    files:
+    - seeds/qa_test_seed_job_Databricks.csv
+    createdAt: '2025-08-14 10:08:57'
+sqlSources: {}
+sqlUnreferencedSources: {}
+sqlPipeline:
+  name: sqlPipeline
+  description: null
+  author: abhisheks+e2etests@prophecy.io
+  createdAt: '2025-08-14 10:06:46'
+dependencies: []
+projectDependencies:
+  '59760':
+    projectUID: 59760
+    projectName: ProphecyDatabricksSqlBasics
+    repositoryPath: gitUri=https://github.com/prophecy-io/databricks-sql-basics&subPath=
+    version: 0.0.12
+    isDefault: true
+    author: null
+    createdAt: '2025-08-14 10:06:27'
+flags:
+  shouldAddDefaultDependenciesIfAbsent: false
+pipelineConfigurations: {}
+projectConfigurations: {}

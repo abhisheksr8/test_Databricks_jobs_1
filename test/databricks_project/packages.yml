@@ -1,0 +1,5 @@
+---
+packages:
+- revision: "0.0.12"
+  git: "https://github.com/prophecy-io/databricks-sql-basics"
+  subdirectory: ""
