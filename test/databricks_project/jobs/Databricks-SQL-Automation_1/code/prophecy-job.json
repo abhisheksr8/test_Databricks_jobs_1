@@ -1,0 +1,156 @@
+{
+  "metainfo" : {
+    "type" : "Databricks",
+    "fabricId" : "7",
+    "jobId" : "jobs/Databricks-SQL-Automation_1",
+    "name" : "Databricks-SQL-Automation_1",
+    "schedule" : "0 0 0 * * ? 2090",
+    "scheduleTimeZone" : "UTC",
+    "jobClusterMode" : {
+      "clusterMode" : "Single"
+    },
+    "enabled" : false,
+    "defaultClusterSize" : "prophecy_internal_jobs",
+    "alerting" : {
+      "emails" : "abhisheks@prophecy.io,rohitj@prophecy.io,yuvraj@prophecy.io",
+      "onStart" : true,
+      "onSuccess" : true,
+      "onFailure" : true
+    },
+    "maxConcurrentRuns" : 1,
+    "processDefaultSettings" : {
+      "retries" : 0,
+      "alerting" : {
+        "emails" : "",
+        "onStart" : false,
+        "onSuccess" : false,
+        "onFailure" : false
+      },
+      "emails" : "",
+      "onStart" : false,
+      "onSuccess" : false,
+      "onFailure" : false
+    }
+  },
+  "processes" : {
+    "WBpHJeWR12hV4tMkkYyMV" : {
+      "id" : "WBpHJeWR12hV4tMkkYyMV",
+      "component" : "Model",
+      "metadata" : {
+        "label" : "Model_0",
+        "slug" : "Model_0",
+        "x" : 100,
+        "y" : 100
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "in",
+          "slug" : ""
+        } ],
+        "outputs" : [ {
+          "id" : "out",
+          "slug" : ""
+        } ]
+      },
+      "settings" : {
+        "type" : "Inherited",
+        "alerting" : {
+          "emails" : "",
+          "onStart" : false,
+          "onSuccess" : false,
+          "onFailure" : false
+        },
+        "emails" : "",
+        "onStart" : false,
+        "onSuccess" : false,
+        "onFailure" : false
+      },
+      "properties" : {
+        "execSeed" : true,
+        "execRun" : true,
+        "gitEntity" : "branch",
+        "model" : "test_Automation_Databricks_jobs_model",
+        "projectId" : "64991",
+        "runOnlyModel" : "true",
+        "loadingModels" : false,
+        "entityName" : "test_Automation_Databricks_jobs_model",
+        "profile" : "run_profile",
+        "sqlFabricId" : "7",
+        "gitEntityValue" : "testBranchDatabricksJobs",
+        "execDeps" : true,
+        "sqlProjectType" : "databricks",
+        "execTest" : false,
+        "currentProjectModels" : [ {
+          "label" : "test_Automation_Databricks_jobs_model",
+          "value" : "test_Automation_Databricks_jobs_model",
+          "id" : "64991/.prophecy/metadata/sqlmodels/test_Automation_Databricks_jobs_model",
+          "name" : "test_Automation_Databricks_jobs_model"
+        }, {
+          "label" : "test_modelAnother_final_Automation_Databricks_jobs_model",
+          "value" : "test_modelAnother_final_Automation_Databricks_jobs_model",
+          "id" : "64991/.prophecy/metadata/sqlsnapshots/test_modelAnother_final_Automation_Databricks_jobs_model",
+          "name" : "test_modelAnother_final_Automation_Databricks_jobs_model"
+        } ]
+      },
+      "conditional" : {
+        "runIf" : "ALL_SUCCESS",
+        "forEach" : false,
+        "forEachConfig" : "",
+        "forEachConcurrency" : 1,
+        "forEachInputVariable" : ""
+      },
+      "parent" : null
+    },
+    "6aDfLxrU_yxVwh0DSuL0K$$mn0ixprl0W-TU_JvSL2TO" : {
+      "id" : "6aDfLxrU_yxVwh0DSuL0K$$mn0ixprl0W-TU_JvSL2TO",
+      "component" : "Script",
+      "metadata" : {
+        "label" : "Script_1",
+        "slug" : "Script_1",
+        "x" : -420,
+        "y" : 0
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "dUey6azYXRex5Sm0r-Aic$$Hy6tnf8NVOBlBkc9iqnl1",
+          "slug" : ""
+        } ],
+        "outputs" : [ {
+          "id" : "37VD8Tfo80-dPB9kd3JDU$$JPPR9pP-fabsvy4Ttlrfy",
+          "slug" : ""
+        } ]
+      },
+      "settings" : {
+        "type" : "Inherited",
+        "alerting" : {
+          "emails" : "",
+          "onStart" : false,
+          "onSuccess" : false,
+          "onFailure" : false
+        },
+        "emails" : "",
+        "onStart" : false,
+        "onSuccess" : false,
+        "onFailure" : false
+      },
+      "properties" : {
+        "code" : "print(\"hello\")\n"
+      },
+      "conditional" : {
+        "runIf" : "ALL_SUCCESS",
+        "forEach" : false,
+        "forEachConfig" : "",
+        "forEachConcurrency" : 1,
+        "forEachInputVariable" : ""
+      },
+      "parent" : null
+    }
+  },
+  "connections" : [ {
+    "id" : "4ARWn-i1FYeOl6ZFflFy5",
+    "source" : "WBpHJeWR12hV4tMkkYyMV",
+    "target" : "6aDfLxrU_yxVwh0DSuL0K$$mn0ixprl0W-TU_JvSL2TO",
+    "sourcePort" : "out",
+    "targetPort" : "dUey6azYXRex5Sm0r-Aic$$Hy6tnf8NVOBlBkc9iqnl1"
+  } ]
+}
