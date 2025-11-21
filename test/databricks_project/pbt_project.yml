@@ -1,0 +1,174 @@
+name: Databricks_AutomationJobs_Project
+description: test random description
+version: 0.0.1
+author: abhisheks+e2etests@prophecy.io
+language: sql
+buildSystem: ''
+buildSystemDetails: null
+pipelines: {}
+datasets: {}
+templates: {}
+jobs:
+  jobs/Airflow-DB-Composer-Automation:
+    name: Airflow-DB-Composer-Automation
+    description: SQL Databricks on Composer test job
+    fabricUID: 15
+    scheduler:
+      Composer: {}
+    cloudProvider: null
+    jobSize: null
+    scheduleCron: 0 0 17 2 *
+    timeout: null
+    alerting:
+      emails: ''
+      onStart: false
+      onSuccess: false
+      onFailure: false
+    pipelines: []
+    jobClusterMode:
+      clusterMode:
+        Single: {}
+      clusterId: null
+    enabled: null
+    createdAt: '2025-11-21 21:16:06'
+    author: abhisheks+e2etests@prophecy.io
+    models:
+    - test_Automation_Databricks_jobs_model
+    - test_modelAnother_final_Automation_Databricks_jobs_model
+    sqlProjects: []
+gemContainer:
+  languageVersion: ''
+  gemLibsVersion: ''
+  gems: {}
+  dependencies: null
+functions:
+  author: null
+  createdAt: '2025-11-21 21:10:06'
+  udfs: {}
+  udafs: {}
+  expressions: {}
+  airflowFunctions: {}
+  businessRules: {}
+subgraphs: {}
+sqlModels:
+  .prophecy/metadata/sqlmodels/test_Automation_Databricks_jobs_model:
+    name: test_Automation_Databricks_jobs_model
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: id
+        dataType:
+          type: Integer
+      - name: name
+        dataType:
+          type: String
+      - name: updated_at
+        dataType:
+          type: Date
+    description: null
+    author: abhisheks+e2etests@prophecy.io
+    files:
+    - models/testmodel/test_Automation_Databricks_jobs_model.sql
+    - .prophecy/ide/models/test_Automation_Databricks_jobs_model.json
+    sqlDependencies:
+      models: []
+      datasets: []
+      seeds: []
+      sources: []
+      snapshots: []
+    createdAt: '2025-11-21 21:11:17'
+sqlSnapshots:
+  .prophecy/metadata/sqlsnapshots/test_modelAnother_final_Automation_Databricks_jobs_model:
+    name: test_modelAnother_final_Automation_Databricks_jobs_model
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: id
+        dataType:
+          type: Integer
+      - name: name
+        dataType:
+          type: String
+      - name: updated_at
+        dataType:
+          type: Date
+      - name: dbt_scd_id
+        dataType:
+          type: String
+      - name: dbt_updated_at
+        dataType:
+          type: Date
+      - name: dbt_valid_from
+        dataType:
+          type: Date
+      - name: dbt_valid_to
+        dataType:
+          type: Date
+    description: null
+    author: abhisheks+e2etests@prophecy.io
+    files:
+    - snapshots/anotherfolder/test_modelAnother_final_Automation_Databricks_jobs_model.sql
+    - .prophecy/ide/snapshots/test_modelAnother_final_Automation_Databricks_jobs_model.json
+    - snapshots/anotherfolder/schema.yml
+    sqlDependencies:
+      models: []
+      datasets: []
+      seeds: []
+      sources: []
+      snapshots: []
+    createdAt: '2025-11-21 21:15:11'
+sqlTests: {}
+sqlMacros:
+  .prophecy/metadata/sqlmacros/generate_schema_name:
+    name: generate_schema_name
+    macroType: expression
+    description: null
+    author: abhisheks+e2etests@prophecy.io
+    files:
+    - macros/generate_schema_name.sql
+    - .prophecy/ide/macros/generate_schema_name.json
+    createdAt: '2025-11-21 21:10:14'
+sqlSeeds:
+  .prophecy/metadata/sqlseeds/qa_test_seed_job_Databricks:
+    name: qa_test_seed_job_Databricks
+    schema:
+      entityType: ''
+      providerType: Databricks
+      fields:
+      - name: id
+        dataType:
+          type: Integer
+      - name: name
+        dataType:
+          type: String
+      - name: updated_at
+        dataType:
+          type: Date
+    description: null
+    author: abhisheks+e2etests@prophecy.io
+    files:
+    - seeds/qa_test_seed_job_Databricks.csv
+    createdAt: '2025-11-21 21:12:26'
+sqlSources: {}
+sqlUnreferencedSources: {}
+sqlPipeline:
+  name: sqlPipeline
+  description: null
+  author: abhisheks+e2etests@prophecy.io
+  createdAt: '2025-11-21 21:10:06'
+dependencies: []
+projectDependencies:
+  '26980':
+    projectUID: 26980
+    projectName: prophecy_basics
+    repositoryPath: gitUri=https://github.com/prophecy-io/prophecy-basics&subPath=
+    version: 1.0.4.dev1
+    isDefault: true
+    author: null
+    createdAt: '2025-11-21 21:09:44'
+flags:
+  shouldAddDefaultDependenciesIfAbsent: false
+pipelineConfigurations: {}
+projectConfigurations: {}
