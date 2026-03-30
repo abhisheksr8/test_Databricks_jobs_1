@@ -1,0 +1,15 @@
+---
+version: 2
+snapshots:
+- name: "test_modelAnother_final_Automationchetan_Databricks_jobs_model"
+  columns:
+  - name: "id"
+    dataType:
+      type: "Integer"
+  - name: "name"
+    dataType:
+      type: "String"
+  - name: "updated_at"
+    dataType:
+      type: "Date"
+  tests: []

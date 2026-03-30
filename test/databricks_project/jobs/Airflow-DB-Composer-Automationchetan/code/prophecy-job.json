@@ -1,0 +1,416 @@
+{
+  "metainfo" : {
+    "type" : "Composer",
+    "fabricId" : "15",
+    "jobId" : "jobs/Airflow-DB-Composer-Automationchetan",
+    "name" : "Airflow-DB-Composer-Automationchetan",
+    "dagName" : "regression_abhisheks_e2etests_Databricks_AutomationchetanJobs_Project_Airflow_DB_Composer_Automationchetan",
+    "schedule" : "0 0 17 2 *",
+    "enabled" : false,
+    "alerting" : {
+      "emails" : "",
+      "onStart" : false,
+      "onSuccess" : false,
+      "onFailure" : false,
+      "onDurationWarningThresholdExceeded" : false
+    },
+    "maxConcurrentRuns" : 1,
+    "processDefaultSettings" : {
+      "ignore_first_depends_on_past" : true,
+      "do_xcom_push" : true
+    },
+    "maxActiveRuns" : 1,
+    "catchup" : false,
+    "scheduleTimeZone" : "UTC",
+    "dagParams" : {
+      "instances" : {
+        "default" : { }
+      },
+      "params" : { },
+      "selected" : "default"
+    },
+    "airflowFunctions" : [ ],
+    "dynamicPipelineStatus" : {
+      "databricks" : false,
+      "dataproc" : false,
+      "emr" : false,
+      "onprem" : false,
+      "emr_serverless" : false
+    }
+  },
+  "processes" : {
+    "NaYNit_Nk10Eg5pPwzAt4$$Gw-WWkoxn24zdcFQoR-Ih" : {
+      "id" : "NaYNit_Nk10Eg5pPwzAt4$$Gw-WWkoxn24zdcFQoR-Ih",
+      "component" : "Email",
+      "metadata" : {
+        "label" : "Email_1",
+        "slug" : "Email_1",
+        "x" : 140,
+        "y" : -140
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "G3Tr1j-EdEibLu8Gd4y5z$$UG34cKySRQh2DqGdh2Bjp",
+          "slug" : ""
+        } ],
+        "outputs" : [ {
+          "id" : "mFBKnaNkVj4uGGyQyotie$$UMbqjV9jN61HRhWceovNz",
+          "slug" : ""
+        } ]
+      },
+      "settings" : { },
+      "properties" : {
+        "emailCC" : "navneet@prophecy.io",
+        "subject" : "Test Subject",
+        "emailBCC" : "sony@prophecy.io",
+        "emailTo" : "abhisheks@prophecy.io",
+        "emailConnectionId" : "email_default",
+        "htmlContent" : "Test Content",
+        "taskId" : null
+      },
+      "connections" : [ ],
+      "processes" : { }
+    },
+    "3FhVBs96zGfbAn3F0o_c2$$-qYBDrwBvGxJbekykCi3u" : {
+      "id" : "3FhVBs96zGfbAn3F0o_c2$$-qYBDrwBvGxJbekykCi3u",
+      "component" : "S3FileSensor",
+      "metadata" : {
+        "label" : "S3FileSensor_1",
+        "slug" : "S3FileSensor_1",
+        "x" : -140,
+        "y" : 0
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "wA0jGdFMbP-gNJgbPO8yy$$PkJEKTp6omEdDbSegcac7",
+          "slug" : ""
+        } ],
+        "outputs" : [ {
+          "id" : "FvoFCO74HRcEdd6V4-UX6$$MXmbn6D0-grLm_jMEGrQc",
+          "slug" : ""
+        } ]
+      },
+      "settings" : { },
+      "properties" : {
+        "awsConnectionId" : "aws_s3_default",
+        "wildCardMatch" : false,
+        "responseCheck" : null,
+        "verifySslCertificates" : false,
+        "s3Paths" : "test/validation_data/test_source.json",
+        "timeout" : 600,
+        "bucketName" : "qa-prophecy",
+        "taskId" : null
+      },
+      "connections" : [ ],
+      "processes" : { }
+    },
+    "_DjUFSClTJG2vKfKgeydx$$Q35cQy0na2F2wR2MIKNed" : {
+      "id" : "_DjUFSClTJG2vKfKgeydx$$Q35cQy0na2F2wR2MIKNed",
+      "component" : "Slack",
+      "metadata" : {
+        "label" : "Slack_1",
+        "slug" : "Slack_1",
+        "x" : 280,
+        "y" : -140
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "JevAivWEjFH2ExumWxfqd$$s4vXAzpXtbFkCWMabqef-",
+          "slug" : ""
+        } ],
+        "outputs" : [ {
+          "id" : "xLz6YPUxrmPOXPeRn5Z9z$$0hJzB-QBEWLg5OZHzG4e7",
+          "slug" : ""
+        } ]
+      },
+      "settings" : { },
+      "properties" : {
+        "channel" : "abhyslackpub",
+        "text" : "Test Automation Airflow",
+        "token" : null,
+        "slackConnectionId" : "slack_default",
+        "taskId" : null
+      },
+      "connections" : [ ],
+      "processes" : { }
+    },
+    "KcGCwgQYm_enlXKy3FrUf$$S7Z7v17cFcbvKjor731Sk" : {
+      "id" : "KcGCwgQYm_enlXKy3FrUf$$S7Z7v17cFcbvKjor731Sk",
+      "component" : "Model",
+      "metadata" : {
+        "label" : "Model_1",
+        "slug" : "Model_1",
+        "x" : 0,
+        "y" : -140
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "A600koAQ5LQKRE8ydgzfM$$SyauD540mI-sWVAPHRMRW",
+          "slug" : ""
+        } ],
+        "outputs" : [ {
+          "id" : "HK6uZzFQomMv2vbGmLSc7$$es01LJusOFPsMlV1Va165",
+          "slug" : ""
+        } ]
+      },
+      "settings" : {
+        "retries" : 1,
+        "max_retry_delay" : 1
+      },
+      "properties" : {
+        "entityId" : "55124/.prophecy/metadata/sqlsnapshots/test_modelAnother_final_Automationchetan_Databricks_jobs_model",
+        "cacheSelectedOnly" : null,
+        "gitSubPath" : null,
+        "runModelWithParents" : true,
+        "defer" : null,
+        "projectConfig" : null,
+        "noDefer" : null,
+        "runSeed" : true,
+        "gitEntity" : "branch",
+        "noPartialParse" : null,
+        "model" : null,
+        "warnErrorOptions" : null,
+        "gitTokenSecret" : null,
+        "state" : null,
+        "useExperimentalParser" : null,
+        "currentProjectSnapshots" : null,
+        "gitSshUrl" : null,
+        "indirectSelection" : null,
+        "partialParse" : null,
+        "vars" : null,
+        "isAdhocRunFromSameProject" : null,
+        "customVersion" : true,
+        "noPrint" : null,
+        "quiet" : null,
+        "projectId" : "55124",
+        "orchestratorAirflowConnectionId" : null,
+        "runMode" : "model",
+        "runOnlyModel" : false,
+        "favorState" : null,
+        "failFast" : null,
+        "noStaticParser" : null,
+        "loadingModels" : false,
+        "runTest" : true,
+        "select" : null,
+        "recordTimingInfo" : null,
+        "fullRefresh" : true,
+        "entityName" : "test_modelAnother_final_Automationchetan_Databricks_jobs_model",
+        "noCacheSelectedOnly" : null,
+        "gitEntityValueTag" : null,
+        "noFavorState" : null,
+        "snapshot" : null,
+        "isProphecyManaged" : false,
+        "profile" : null,
+        "noVersionCheck" : null,
+        "noWriteJson" : null,
+        "printerWidth" : null,
+        "sqlFabricId" : "9",
+        "gitEntityValue" : "testBranchDatabricksJobs",
+        "logFormat" : null,
+        "runModelWithChildren" : true,
+        "dbtProfileSecret" : null,
+        "gitEntityValueCommit" : null,
+        "target" : null,
+        "exclude" : null,
+        "runDeps" : true,
+        "sqlProjectType" : "databricks",
+        "loadingSnapshots" : false,
+        "gitEntityValueBranch" : "testBranchDatabricksJobs",
+        "noAnonymousUsageStats" : true,
+        "selector" : null,
+        "targetPath" : null,
+        "threads" : null,
+        "warnError" : null,
+        "currentProjectModels" : [ {
+          "label" : "test_Automationchetan_Databricks_jobs_model",
+          "value" : "test_Automationchetan_Databricks_jobs_model",
+          "id" : "55124/.prophecy/metadata/sqlmodels/test_Automationchetan_Databricks_jobs_model",
+          "name" : "test_Automationchetan_Databricks_jobs_model"
+        }, {
+          "label" : "test_modelAnother_final_Automationchetan_Databricks_jobs_model",
+          "value" : "test_modelAnother_final_Automationchetan_Databricks_jobs_model",
+          "id" : "55124/.prophecy/metadata/sqlsnapshots/test_modelAnother_final_Automationchetan_Databricks_jobs_model",
+          "name" : "test_modelAnother_final_Automationchetan_Databricks_jobs_model"
+        } ],
+        "profilesDir" : null,
+        "taskId" : null,
+        "logPath" : null,
+        "storeFailures" : null,
+        "entityKind" : "snapshot"
+      },
+      "connections" : [ ],
+      "processes" : { }
+    },
+    "ROlK6J-W3-9ONM-UHfi0X$$i5s1W2l5GpkkKVgoHub77" : {
+      "id" : "ROlK6J-W3-9ONM-UHfi0X$$i5s1W2l5GpkkKVgoHub77",
+      "component" : "HTTPSensor",
+      "metadata" : {
+        "label" : "HTTPSensor_1",
+        "slug" : "HTTPSensor_1",
+        "x" : 0,
+        "y" : 0
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "P3lO3F9Sa8KN215JAYHhN$$uLyWKcnIxv0u1X3jOZBzt",
+          "slug" : ""
+        } ],
+        "outputs" : [ {
+          "id" : "EiJ4xaWcDYb_l2uw9I-bw$$_gO7TsKoIg95MooHSu3c8",
+          "slug" : ""
+        } ]
+      },
+      "settings" : { },
+      "properties" : {
+        "pokeInterval" : 60,
+        "httpConnectionId" : "http_default",
+        "responseCheck" : "",
+        "endpoint" : "/webhp",
+        "requestParams" : null,
+        "timeout" : 600,
+        "taskId" : null,
+        "requestHeaders" : null
+      },
+      "connections" : [ ],
+      "processes" : { }
+    },
+    "Mf3jCqks2Rg589Q6D9jef$$qZnlcjqZCK0LCzXIY2XDl" : {
+      "id" : "Mf3jCqks2Rg589Q6D9jef$$qZnlcjqZCK0LCzXIY2XDl",
+      "component" : "Model",
+      "metadata" : {
+        "label" : "Model_0",
+        "slug" : "Model_0",
+        "x" : -140,
+        "y" : -140
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "aUc34aSE28H0Xaz_iTVCV$$orRDw0eTOSnJzyTa0gAX9",
+          "slug" : ""
+        } ],
+        "outputs" : [ {
+          "id" : "UwHMBn0fneVRKx04Ec-6b$$YV9mldv8oS4ssq9MlQytC",
+          "slug" : ""
+        } ]
+      },
+      "settings" : {
+        "retries" : 1,
+        "max_retry_delay" : 1
+      },
+      "properties" : {
+        "entityId" : "55124/.prophecy/metadata/sqlmodels/test_Automationchetan_Databricks_jobs_model",
+        "cacheSelectedOnly" : null,
+        "gitSubPath" : null,
+        "runModelWithParents" : true,
+        "defer" : null,
+        "projectConfig" : null,
+        "noDefer" : null,
+        "runSeed" : true,
+        "gitEntity" : "branch",
+        "noPartialParse" : null,
+        "model" : null,
+        "warnErrorOptions" : null,
+        "gitTokenSecret" : null,
+        "state" : null,
+        "useExperimentalParser" : null,
+        "currentProjectSnapshots" : null,
+        "gitSshUrl" : null,
+        "indirectSelection" : null,
+        "partialParse" : null,
+        "vars" : null,
+        "isAdhocRunFromSameProject" : null,
+        "customVersion" : true,
+        "noPrint" : null,
+        "quiet" : null,
+        "projectId" : "55124",
+        "orchestratorAirflowConnectionId" : null,
+        "runMode" : "model",
+        "runOnlyModel" : false,
+        "favorState" : null,
+        "failFast" : null,
+        "noStaticParser" : null,
+        "loadingModels" : false,
+        "runTest" : true,
+        "select" : null,
+        "recordTimingInfo" : null,
+        "fullRefresh" : true,
+        "entityName" : "test_Automationchetan_Databricks_jobs_model",
+        "noCacheSelectedOnly" : null,
+        "gitEntityValueTag" : null,
+        "noFavorState" : null,
+        "snapshot" : null,
+        "isProphecyManaged" : false,
+        "profile" : null,
+        "noVersionCheck" : null,
+        "noWriteJson" : null,
+        "printerWidth" : null,
+        "sqlFabricId" : "9",
+        "gitEntityValue" : "testBranchDatabricksJobs",
+        "logFormat" : null,
+        "runModelWithChildren" : true,
+        "dbtProfileSecret" : null,
+        "gitEntityValueCommit" : null,
+        "target" : null,
+        "exclude" : null,
+        "runDeps" : true,
+        "sqlProjectType" : "databricks",
+        "loadingSnapshots" : false,
+        "gitEntityValueBranch" : "testBranchDatabricksJobs",
+        "noAnonymousUsageStats" : true,
+        "selector" : null,
+        "targetPath" : null,
+        "threads" : null,
+        "warnError" : null,
+        "currentProjectModels" : [ {
+          "label" : "test_Automationchetan_Databricks_jobs_model",
+          "value" : "test_Automationchetan_Databricks_jobs_model",
+          "id" : "55124/.prophecy/metadata/sqlmodels/test_Automationchetan_Databricks_jobs_model",
+          "name" : "test_Automationchetan_Databricks_jobs_model"
+        }, {
+          "label" : "test_modelAnother_final_Automationchetan_Databricks_jobs_model",
+          "value" : "test_modelAnother_final_Automationchetan_Databricks_jobs_model",
+          "id" : "55124/.prophecy/metadata/sqlsnapshots/test_modelAnother_final_Automationchetan_Databricks_jobs_model",
+          "name" : "test_modelAnother_final_Automationchetan_Databricks_jobs_model"
+        } ],
+        "profilesDir" : null,
+        "taskId" : null,
+        "logPath" : null,
+        "storeFailures" : null,
+        "entityKind" : "model"
+      },
+      "connections" : [ ],
+      "processes" : { }
+    }
+  },
+  "connections" : [ {
+    "id" : "oJJel-7jdBeY2Up6AlPB6",
+    "source" : "Mf3jCqks2Rg589Q6D9jef$$qZnlcjqZCK0LCzXIY2XDl",
+    "target" : "KcGCwgQYm_enlXKy3FrUf$$S7Z7v17cFcbvKjor731Sk",
+    "sourcePort" : "UwHMBn0fneVRKx04Ec-6b$$YV9mldv8oS4ssq9MlQytC",
+    "targetPort" : "A600koAQ5LQKRE8ydgzfM$$SyauD540mI-sWVAPHRMRW"
+  }, {
+    "id" : "SVS24632TDZ3XrrN4xB0v",
+    "source" : "Mf3jCqks2Rg589Q6D9jef$$qZnlcjqZCK0LCzXIY2XDl",
+    "target" : "NaYNit_Nk10Eg5pPwzAt4$$Gw-WWkoxn24zdcFQoR-Ih",
+    "sourcePort" : "UwHMBn0fneVRKx04Ec-6b$$YV9mldv8oS4ssq9MlQytC",
+    "targetPort" : "G3Tr1j-EdEibLu8Gd4y5z$$UG34cKySRQh2DqGdh2Bjp"
+  }, {
+    "id" : "fvamzzMYM9WEoesvOBE5e",
+    "source" : "Mf3jCqks2Rg589Q6D9jef$$qZnlcjqZCK0LCzXIY2XDl",
+    "target" : "_DjUFSClTJG2vKfKgeydx$$Q35cQy0na2F2wR2MIKNed",
+    "sourcePort" : "UwHMBn0fneVRKx04Ec-6b$$YV9mldv8oS4ssq9MlQytC",
+    "targetPort" : "JevAivWEjFH2ExumWxfqd$$s4vXAzpXtbFkCWMabqef-"
+  }, {
+    "id" : "P42SdnpqTdhNLb8FfnhQb",
+    "source" : "Mf3jCqks2Rg589Q6D9jef$$qZnlcjqZCK0LCzXIY2XDl",
+    "target" : "3FhVBs96zGfbAn3F0o_c2$$-qYBDrwBvGxJbekykCi3u",
+    "sourcePort" : "UwHMBn0fneVRKx04Ec-6b$$YV9mldv8oS4ssq9MlQytC",
+    "targetPort" : "wA0jGdFMbP-gNJgbPO8yy$$PkJEKTp6omEdDbSegcac7"
+  }, {
+    "id" : "H7wSixWlAsBxz8DwUWVt_",
+    "source" : "Mf3jCqks2Rg589Q6D9jef$$qZnlcjqZCK0LCzXIY2XDl",
+    "target" : "ROlK6J-W3-9ONM-UHfi0X$$i5s1W2l5GpkkKVgoHub77",
+    "sourcePort" : "UwHMBn0fneVRKx04Ec-6b$$YV9mldv8oS4ssq9MlQytC",
+    "targetPort" : "P3lO3F9Sa8KN215JAYHhN$$uLyWKcnIxv0u1X3jOZBzt"
+  } ]
+}
